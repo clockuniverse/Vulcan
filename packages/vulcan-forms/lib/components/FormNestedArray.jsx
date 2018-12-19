@@ -125,7 +125,9 @@ FormNestedArray.propTypes = {
   label: PropTypes.string,
   errors: PropTypes.array.isRequired,
   deletedValues: PropTypes.array.isRequired,
-  formComponents: PropTypes.object.isRequired
+  formComponents: PropTypes.object.isRequired,
+  minCount: PropTypes.number,
+  maxCount: PropTypes.number
 };
 
 module.exports = FormNestedArray;
