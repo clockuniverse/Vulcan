@@ -5,7 +5,6 @@ import React from 'react';
 import Form from '../lib/components/Form';
 import FormComponent from '../lib/components/FormComponent';
 import FormNestedArray from '../lib/components/FormNestedArray';
-import FormNestedItem from '../lib/components/FormNestedArray';
 import '../lib/components/FormNestedArray';
 import expect from 'expect';
 
