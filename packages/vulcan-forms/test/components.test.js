@@ -4,6 +4,8 @@ import React from 'react';
 // TODO: should be loaded from Components instead?
 import Form from '../lib/components/Form';
 import FormComponent from '../lib/components/FormComponent';
+import FormNestedArray from '../lib/components/FormNestedArray';
+import FormNestedItem from '../lib/components/FormNestedArray';
 import '../lib/components/FormNestedArray';
 import expect from 'expect';
 
@@ -423,34 +425,32 @@ describe('vulcan-forms/components', function() {
     });
   });
 
-  describe('FormNestedArray - min and max counts', function() {
+  describe('FormNestedArray - maxCount, minCount', function() {
     const defaultProps = {
       errors: [],
       deletedValues: [],
       path: 'foobar',
-      formComponents: Components
+      formComponents: Components,
     };
-    //remove button
-    it.skip('should display remove item button when array length > minCount', function() {
-      const wrapper = mount(<Components.FormNestedArray {...defaultProps} currentValues={{}} value={[1, 2, 3]} minCount={2} />);
-      const removeButton = wrapper.find('Components.IconRemove');
-      expect(removeButton).to.be.defined;
+    it('should display remove item button when array length > minCount', function() {
+      const wrapper = shallow(<FormNestedArray {...defaultProps} currentValues={{}} value={[1, 2, 3]} minCount={2} />);
+      const showRemove = wrapper.find('Components.FormNestedItem').first().props().showRemove;
+      expect(removeButton).toBeTrue();
     });
-    it.skip('should not display remove item button when array length is <= minCount', function() {
-      const wrapper = mount(<Components.FormNestedArray {...defaultProps} currentValues={{}} value={[1, 2]} minCount={2} />);
-      const removeButton = wrapper.find('Components.IconRemove');
-      expect(removeButton).to.be.undefined;
+    it('should not display remove item button when array length is <= minCount', function() {
+      const wrapper = shallow(<FormNestedArray {...defaultProps} currentValues={{}} value={[1, 2]} minCount={2} />);
+      const showRemove = wrapper.find('Components.FormNestedItem').first().props().showRemove;
+      expect(removeButton).toBeFalse();
     });
-    //add button
-    it.skip('should display the add item button when array length < maxCount', function(){
-      const wrapper = mount(<Components.FormNestedArray {...defaultProps} currentValues={{}} value={[1]} maxCount={2} />);
+    it('should display the addItem button when array length < maxCount', function(){
+      const wrapper = shallow(<FormNestedArray {...defaultProps} currentValues={{}} value={[1]} maxCount={3} />);
       const addButton = wrapper.find('Components.IconAdd');
-      expect(addButton).to.be.defined;
+      expect(addButton).toBeDefined();
     });
-    it.skip('should not display the add item when array length is >= maxCount', function() {
-      const wrapper = mount(<Components.FormNestedArray {...defaultProps} currentValues={{}} value={[1, 2]} maxCount={2} />);
+    it('should not display the addItem button when array length is >= maxCount', function() {
+      const wrapper = shallow(<FormNestedArray {...defaultProps} currentValues={{}} value={[1, 2, 3]} maxCount={3} />);
       const addButton = wrapper.find('Components.IconAdd');
-      expect(addButton).to.be.undefined;
+      expect(addButton).toBeUndefined();
     });
   });
 
