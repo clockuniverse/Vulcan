@@ -433,13 +433,13 @@ describe('vulcan-forms/components', function() {
     };
     it('should display remove item button when array length > minCount', function() {
       const wrapper = shallow(<FormNestedArray {...defaultProps} currentValues={{}} value={[1, 2, 3]} minCount={2} />);
-      const showRemove = wrapper.find('Components.FormNestedItem').first().props().showRemove;
-      expect(removeButton).toBeTrue();
+      const { showRemove } = wrapper.find('Components.FormNestedItem').first().props();
+      expect(showRemove).toBeTrue();
     });
     it('should not display remove item button when array length is <= minCount', function() {
       const wrapper = shallow(<FormNestedArray {...defaultProps} currentValues={{}} value={[1, 2]} minCount={2} />);
-      const showRemove = wrapper.find('Components.FormNestedItem').first().props().showRemove;
-      expect(removeButton).toBeFalse();
+      const { showRemove } = wrapper.find('Components.FormNestedItem').first().props();
+      expect(showRemove).toBeFalse();
     });
     it('should display the addItem button when array length < maxCount', function(){
       const wrapper = shallow(<FormNestedArray {...defaultProps} currentValues={{}} value={[1]} maxCount={3} />);
